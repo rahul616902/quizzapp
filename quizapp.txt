@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Function to ask a quiz question and check the answer
+bool askQuestion(const string& question, const string& correctAnswer) {
+    cout << question << endl;
+    cout << "Your Answer: ";
+    string userAnswer;
+    cin.ignore(); // Clear the newline character from previous input
+    getline(cin, userAnswer);
+
+    if (userAnswer == correctAnswer) {
+        cout << "Correct!" << endl;
+        return true;
+    } else {
+        cout << "Incorrect. The correct answer is: " << correctAnswer << endl;
+        return false;
+    }
+}
+
+int main() {
+    cout << "Welcome to the Quiz App" << endl;
+    int score = 0;
+
+    // You can add your quiz questions here
+    // Each question should have a string for the question itself and a string for the correct answer
+    string questions[][2] = {
+        {"What is the capital of France?", "Paris"},
+        {"Which planet is known as the Red Planet?", "Mars"},
+        {"What is the largest mammal in the world?", "Blue Whale"},
+    };
+
+    int numQuestions = sizeof(questions) / sizeof(questions[0]);
+
+    for (int i = 0; i < numQuestions; ++i) {
+        bool result = askQuestion(questions[i][0], questions[i][1]);
+        if (result) {
+            score++;
+        }
+    }
+
+    cout << "Quiz Complete!" << endl;
+    cout << "Your Score: " << score << " out of " << numQuestions << endl;
+
+    return 0;
+}
